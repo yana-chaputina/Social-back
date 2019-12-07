@@ -198,4 +198,18 @@ class PostServiceTest {
         assertEquals(1,actual);
 
     }
+
+    @Test
+    void getFirstId() {
+        PostRepository repoMock=mock(PostRepository.class);
+        PostEntity post=new PostEntity(1,"content",null,false,0);
+        List<PostEntity> list=new ArrayList<>();
+        list.add(post);
+
+        when(repoMock.findAll()).thenReturn(list);
+
+        PostService service=new PostService(repoMock);
+        int actual=service.getFirstId();
+        assertEquals(1,actual);
+    }
 }
