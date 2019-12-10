@@ -31,7 +31,6 @@ public class RestErrorController extends AbstractErrorController {
     Throwable error = errorAttributes.getError(webRequest);
     int status = getStatus(request).value();
     String message = "error.unknown";
-    // null - норм
     if (error == null) {
       return ResponseEntity.status(status).body(
           new ErrorResponseDto(status, message)
