@@ -33,8 +33,6 @@ public class RestErrorController extends AbstractErrorController {
     String message = "error.unknown";
     // null - норм
     if (error == null) {
-      // something bad happened
-      // Builder -> позволяет собирать сложные в несколько вызовов (без передачи всех параметров)
       return ResponseEntity.status(status).body(
           new ErrorResponseDto(status, message)
       );

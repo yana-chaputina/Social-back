@@ -19,9 +19,6 @@ import java.io.IOException;
 public class RestFileController {
   private final FileService service;
 
-  // Multipart
-  // byte[]
-  // Model
 
   @PostMapping("/multipart")
   public UploadResponseDto uploadMultipart(@RequestParam MultipartFile file) {

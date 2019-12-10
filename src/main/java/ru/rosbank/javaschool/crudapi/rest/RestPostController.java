@@ -1,8 +1,6 @@
 package ru.rosbank.javaschool.crudapi.rest;
 
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import ru.rosbank.javaschool.crudapi.dto.PostSaveRequestDto;
 import ru.rosbank.javaschool.crudapi.dto.PostResponseDto;
@@ -10,28 +8,24 @@ import ru.rosbank.javaschool.crudapi.service.PostService;
 
 import java.util.List;
 
-@RestController // ко всем методам будет дописано @ResponseBody
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/posts")
 public class RestPostController {
   private final PostService service;
-  private final Logger logger = LoggerFactory.getLogger(RestPostController.class);
 
   @GetMapping(params = {"lastPostId","step"})
   public List<PostResponseDto> getSomePosts(@RequestParam int lastPostId, @RequestParam int step) {
-    logger.info(Thread.currentThread().getName());
     return service.getSomePosts(lastPostId,step);
   }
 
   @GetMapping(params = {"firstPostId"})
   public int getCountOfNewPosts(@RequestParam int firstPostId) {
-    logger.info(Thread.currentThread().getName());
     return service.getCountOfNewPosts(firstPostId);
   }
 
   @GetMapping
   public int getFirstPostId() {
-    logger.info(Thread.currentThread().getName());
     return service.getFirstId();
   }
 
@@ -41,14 +35,13 @@ public class RestPostController {
     return service.searchByContent(q);
   }
 
-  @PostMapping // DataBinding
+  @PostMapping
   public PostResponseDto save(@RequestBody PostSaveRequestDto dto) {
     return service.save(dto);
   }
 
   @DeleteMapping("/{id}")
   public void removeById(@PathVariable int id) {
-//    throw new BadRequestException("bad.request");
     service.removeById(id);
   }
 

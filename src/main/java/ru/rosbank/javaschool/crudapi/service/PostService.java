@@ -9,7 +9,6 @@ import ru.rosbank.javaschool.crudapi.entity.PostEntity;
 import ru.rosbank.javaschool.crudapi.exception.BadRequestException;
 import ru.rosbank.javaschool.crudapi.repository.PostRepository;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -61,7 +60,6 @@ public class PostService {
   public PostResponseDto dislikeById(int id) {
     final PostEntity entity = repository.findById(id)
         .orElseThrow(BadRequestException::new);
-    // FIXME: bad practice, use update methods
     if(entity.getLikes()>0){
       entity.setLikes(entity.getLikes() - 1);
     }
