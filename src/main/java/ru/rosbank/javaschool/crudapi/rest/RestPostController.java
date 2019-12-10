@@ -17,8 +17,8 @@ public class RestPostController {
   private final PostService service;
   private final Logger logger = LoggerFactory.getLogger(RestPostController.class);
 
-  @GetMapping(params = {"last","step"})
-  public List<PostResponseDto> getSomePosts(@RequestParam("last") int lastPost, @RequestParam("step") int step) {
+  @GetMapping(params = {"lastPostId","step"})
+  public List<PostResponseDto> getSomePosts(@RequestParam("lastPostId") int lastPost, @RequestParam("step") int step) {
     logger.info(Thread.currentThread().getName());
     return service.getSomePosts(lastPost,step);
   }
